@@ -1,0 +1,62 @@
+Problem Statement --
+ 
+##########################################################################################
+Write a program which takes two strings as input from the user (str1 and str2). 
+This program should print two strings as output (op1 and op2).
+op1 should contain all the characters which are present in str1 but NOT present in str2.
+op2 should contain all the characters which are present in str2 but NOT present in str1.
+
+example :
+
+ 	        str1	        str2	               op1	                 op2
+Example 1	ABC	         BC	                A	               <null>
+Example 2	BC	        BANGALORE               C	               ANGLORE
+
+###########################################################################################
+
+
+
+
+Solution -----
+
+import java.util.*;
+import java.io.*;
+import java.util.stream.Collectors;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc= new Scanner(System.in);
+		System.out.print("Enter first string- ");
+		String str1 = sc.nextLine();
+		System.out.print("Enter second string- ");
+		String str2 = sc.nextLine();
+		System.out.println(returnOp1(str1, str2));
+		System.out.println(returnOp2(str1, str2));
+		
+	}
+	public static String returnOp1(String a, String b){
+	    List<Character> res = new ArrayList<Character>();
+	    for(int i =0;i<a.length();i++){
+	        char c = a.charAt(i);
+	        if(b.indexOf(c)== -1){
+	            res.add(c);
+	        }
+	    }
+	    String op1 = res.stream().map(String::valueOf)
+                            .collect(Collectors.joining());
+	    return op1;
+	}
+	
+	public static String returnOp2(String a, String b){
+	    List<Character> res = new ArrayList<Character>();
+	    for(int i =0;i<b.length();i++){
+	        char c = b.charAt(i);
+	        if(a.indexOf(c)== -1){
+	            res.add(c);
+	        }
+	    }
+	    String op2 = res.stream().map(String::valueOf)
+                            .collect(Collectors.joining());
+	    return op2;
+	}
+}
